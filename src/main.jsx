@@ -1,13 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import Task from "./08-11/Task.jsx";
-import { taskList } from "./08-11/taskList.js";
+import { ChakraProvider, extendTheme, ColorModeScript } from "@chakra-ui/react";
+import FormLogin from "./09-11/FormLogin2.jsx";
+
+const theme = extendTheme({
+  config: {
+    initialColorMode: "dark", // Establece el modo inicial
+    useSystemColorMode: true, // Desactiva el uso del modo del sistema
+  },
+});
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {taskList.map((task) => (
-      <Task key={task.id} tarea={task.tarea} realizada={task.realizada} />
-    ))}
+    <ChakraProvider>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <FormLogin />
+    </ChakraProvider>
   </React.StrictMode>
 );
